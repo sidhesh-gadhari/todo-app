@@ -1,0 +1,366 @@
+/* ==========================================================================
+   1. CORE PAGE ROOT STYLES
+   ========================================================================== */
+.settings-page-wrapper {
+    background-color: #100d1e;
+    color: #f8fafc;
+    min-height: 100vh;
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    max-width: 37.5rem; /* 600px -> 37.5rem */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    background: transparent;
+    border: none;
+    color: #f8fafc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.settings-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ==========================================================================
+   2. PROFILE BANNER COMPONENT
+   ========================================================================== */
+.profile-banner-card {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 1.25rem; /* 20px -> 1.25rem */
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.625rem 1.5625rem -0.3125rem rgba(99, 102, 241, 0.4); /* 10px -> 0.625rem, 25px -> 1.5625rem, 5px -> 0.3125rem */
+}
+
+.profile-avatar {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.profile-email {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.profile-status {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   3. SETTINGS CONTAINER CARDS & ROWS
+   ========================================================================== */
+.settings-card {
+    background: #1c1732;
+    border-radius: 1.25rem; /* 20px -> 1.25rem */
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.settings-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.settings-icon-box {
+    width: 2.25rem; /* 36px -> 2.25rem */
+    height: 2.25rem; /* 36px -> 2.25rem */
+    border-radius: 0.625rem; /* 10px -> 0.625rem */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purple-bg {
+    background: #8b5cf6;
+}
+
+.orange-bg {
+    background: #f59e0b;
+}
+
+.settings-card-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #2d264a; /* Micro-border kept in px */
+    margin-bottom: 1rem;
+}
+
+.settings-row.border-none {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.settings-row-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #f8fafc;
+}
+
+.settings-row-info p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.settings-row.split {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.settings-value {
+    color: #f8fafc;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   4. INTERACTION UTILITIES & DYNAMIC INPUTS
+   ========================================================================== */
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-switch label {
+    display: block;
+    width: 3.125rem; /* 50px -> 3.125rem */
+    height: 1.75rem; /* 28px -> 1.75rem */
+    background-color: #3b82f6;
+    border-radius: 1.875rem; /* 30px -> 1.875rem */
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-switch label::after {
+    content: '';
+    position: absolute;
+    top: 0.1875rem; /* 3px -> 0.1875rem */
+    left: 1.5625rem; /* 25px -> 1.5625rem */
+    width: 1.375rem; /* 22px -> 1.375rem */
+    height: 1.375rem; /* 22px -> 1.375rem */
+    background-color: white;
+    border-radius: 50%;
+    transition: left 0.3s;
+}
+
+.toggle-switch input:not(:checked)+label {
+    background-color: #475569;
+}
+
+.toggle-switch input:not(:checked)+label::after {
+    left: 0.1875rem; /* 3px -> 0.1875rem */
+}
+
+/* Connect Live Action Sync Interaction Keyframes Effect */
+.google-sync-connect-btn {
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.google-sync-connect-btn:hover:not(:disabled) {
+    background-color: #2d264a !important;
+    border-color: #6366f1 !important;
+}
+
+.sync-pulse-dot {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulseSyncEffect 2s infinite;
+}
+
+@keyframes pulseSyncEffect {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0.375rem rgba(16, 185, 129, 0); /* 6px -> 0.375rem */
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+/* ==========================================================================
+   5. DESTRUCTION MODULE & CONTROL ACTIONS (DANGER ZONE)
+   ========================================================================== */
+.danger-zone {
+    background: rgba(220, 38, 38, 0.05);
+    margin-top: 0.625rem; /* 10px -> 0.625rem */
+    border: 1px solid rgba(220, 38, 38, 0.2); /* Micro-border kept in px */
+    border-radius: 1.25rem; /* 20px -> 1.25rem */
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.danger-zone h3 {
+    color: #ef4444;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.danger-zone p {
+    color: #94a3b8;
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.sign-out-btn {
+    width: 100%;
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.75rem; /* 12px -> 0.75rem */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+.user-delete-btn {
+    width: 100%;
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.75rem; /* 12px -> 0.75rem */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.9375rem; /* 15px -> 0.9375rem */
+    transition: background 0.2s;
+}
+
+.sign-out-btn:hover,
+.user-delete-btn:hover {
+    background: #dc2626;
+}
+
+/* ==========================================================================
+   6. FOOTER META BRANDING LAYOUT
+   ========================================================================== */
+.footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    font-size: 0.72rem;
+    color: #475569;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    border-top: 1px solid #1c1732; /* Micro-border kept in px */
+}
+
+/* ==========================================================================
+   7. GLOBAL LIGHT MODE INTERFACE OVERRIDES
+   ========================================================================== */
+.light-mode.settings-page-wrapper {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+.light-mode .back-button {
+    color: #0f172a;
+}
+
+.light-mode .settings-card {
+    background: #ffffff;
+    box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.05); /* 4px -> 0.25rem, 6px -> 0.375rem, 1px -> 0.0625rem */
+}
+
+.light-mode .settings-card-header h3 {
+    color: #0f172a;
+}
+
+.light-mode .settings-row-info h4,
+.light-mode .settings-value {
+    color: #1e293b;
+}
+
+.light-mode .settings-row.split {
+    color: #64748b;
+}
+
+.light-mode .settings-row {
+    border-bottom: 1px solid #e2e8f0; /* Micro-border kept in px */
+}
+
+.light-mode .google-sync-connect-btn {
+    background-color: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+.light-mode .google-sync-connect-btn:hover:not(:disabled) {
+    background-color: #e2e8f0 !important;
+    border-color: #94a3b8 !important;
+}
+
+.light-mode .footer {
+    border-top-color: #e2e8f0; /* Micro-border kept in px */
+    color: #94a3b8;
+}

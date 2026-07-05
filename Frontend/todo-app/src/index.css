@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* 1. Aggressively kill the default browser scrollbar on the root elements */
+html, 
+body, 
+#root {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal shifting */
+    min-height: 100vh;
+  }
+
+  body {
+    overflow-y: auto; 
+  }
+}
+
+/* 3. Ensure your main container handles the scrolling instead of the body */
+.dashboard-container {
+  min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth mobile scrolling */
+  scroll-behavior: smooth;
+}

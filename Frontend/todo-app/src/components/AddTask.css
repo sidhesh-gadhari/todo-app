@@ -1,0 +1,236 @@
+/* ==========================================================================
+   1. CORE UTILITIES & PAGE WRAPPER
+   ========================================================================== */
+.add-task-page-wrapper {
+    background-color: #100d1e;
+    color: #f8fafc;
+    min-height: 100vh;
+    padding: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    max-width: 37.5rem; /* 600px -> 37.5rem */
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   2. HEADER & FORM LAYOUTS
+   ========================================================================== */
+.add-task-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.add-task-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.add-task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+/* Input Fields & Date Picker Inputs */
+.add-task-input,
+.add-task-select,
+.custom-datepicker-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: #1c1732;
+    border: 1px solid #2d264a; /* Micro-border kept in px */
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 0.75rem; /* 12px -> 0.75rem */
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.add-task-input:focus,
+.add-task-select:focus,
+.custom-datepicker-input:focus {
+    border-color: #3b82f6;
+}
+
+.custom-time-picker-input {
+    cursor: pointer;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+/* Checkbox Element Groups */
+.add-task-checkbox-group {
+    flex-direction: row !important;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.add-task-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: #3b82f6;
+    cursor: pointer;
+}
+
+.add-task-checkbox:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.add-task-checkbox-label {
+    margin: 0 !important;
+    color: #f8fafc !important;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.add-task-checkbox:disabled + .add-task-checkbox-label {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   3. COMPONENTS: CLOCK TIME PICKER POPUP
+   ========================================================================== */
+.tp-ui-modal {
+    background: rgba(15, 23, 42, 0.34);
+    z-index: 5000;
+}
+
+.tp-ui-wrapper {
+    --tp-bg: #f7faf1;
+    --tp-surface: #eef4e7;
+    --tp-surface-hover: #e8f1dc;
+    --tp-input-bg: #eef4e7;
+    --tp-text: #111827;
+    --tp-text-secondary: #8a9283;
+    --tp-text-type-time: #111827;
+    --tp-primary: #2e7d32;
+    --tp-on-primary: #ffffff;
+    --tp-primary-container: #b7f79d;
+    --tp-on-primary-container: #111827;
+    --tp-am-pm-active: #c5f5f8;
+    --tp-am-pm-text-selected: #111827;
+    --tp-am-pm-text-unselected: #566052;
+    --tp-outline: #8d9788;
+    --tp-outline-variant: rgba(46, 125, 50, 0.12);
+    background: #f7faf1 !important;
+    border-radius: 2rem !important; /* 32px -> 2rem */
+    color: #111827 !important;
+    box-shadow: 0 1.375rem 3.125rem rgba(9, 7, 20, 0.24) !important; /* 22px -> 1.375rem, 50px -> 3.125rem */
+}
+
+.tp-ui-select-time {
+    color: #9aa394 !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.tp-ui-hour,
+.tp-ui-minutes {
+    background: #eef4e7 !important;
+    color: #000 !important;
+    font-size: 3.8rem !important;
+    font-weight: 400 !important;
+}
+
+.tp-ui-hour.active,
+.tp-ui-minutes.active {
+    background: #b7f79d !important;
+}
+
+.tp-ui-am,
+.tp-ui-pm {
+    color: #26332b !important;
+}
+
+.tp-ui-am.active,
+.tp-ui-pm.active {
+    background: #c5f5f8 !important;
+}
+
+.tp-ui-clock-face {
+    background: #eef4e7 !important;
+}
+
+.tp-ui-hour-time-12,
+.tp-ui-minute-text {
+    color: #111827 !important;
+    font-size: 1.35rem !important;
+}
+
+.tp-ui-value-tips {
+    background: #2e7d32 !important;
+    color: #ffffff !important;
+}
+
+.tp-ui-clock-hand,
+.tp-ui-circle-hand,
+.tp-ui-dot {
+    background: #2e7d32 !important;
+}
+
+.tp-ui-ok-btn,
+.tp-ui-cancel-btn {
+    color: #2e7d32 !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+}
+
+/* Save Button Element */
+.save-task-btn {
+    margin-top: 1rem;
+    width: 100%;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.75rem; /* 12px -> 0.75rem */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0.25rem 0.9375rem rgba(59, 130, 246, 0.4); /* 4px -> 0.25rem, 15px -> 0.9375rem */
+}
+
+/* ==========================================================================
+   4. LIGHT MODE OVERRIDES
+   ========================================================================== */
+.light-mode.add-task-page-wrapper {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+.light-mode .form-group label {
+    color: #64748b;
+}
+
+.light-mode .add-task-input,
+.light-mode .add-task-select,
+.light-mode .custom-datepicker-input {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    color: #0f172a;
+}
+
+.light-mode .add-task-checkbox-label {
+    color: #0f172a !important;
+}
