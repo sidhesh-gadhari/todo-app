@@ -13,6 +13,7 @@ const Signup = () => {
     const [loading, setLoading] = useState(false);
     const [showPass, setShowPass] = useState(false);
     const [showCnfrm, setShowCnfrm] = useState(false);
+    const [agreement, setAgreement] = useState(false);
 
     const [validations, setValidations] = useState({
         minLength: false,
@@ -156,14 +157,22 @@ const Signup = () => {
                         </div>
                     )}
 
-                    <button type="submit" className="auth-btn" disabled={loading}>
+                    <input checked={agreement} type="checkbox" name="terms" id="terms" onChange={(e) => setAgreement(e.target.checked)} />
+                    <label htmlFor="terms">I agree to the <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link></label>
+
+                    <button disabled={!agreement || loading} type="submit" className="auth-btn">
                         {loading ? 'Sending...' : 'Sign Up'}
                     </button>
                     <div className="oauth-separator">
                         <span>OR</span>
                     </div>
 
-                    <a href={`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api/v1'}/todo/auth/google`} className="google-btn-dark">
+                    <a href={agreement ? `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api/v1'}/todo/auth/google` : '#'} className={`google-btn-dark ${!agreement ? "disabled-google-btn" : ""}`} onClick={(e) => {
+                        if (!agreement) {
+                            e.preventDefault();
+                            toast.error("Please accept the Terms & Privacy Policy first.");
+                        }
+                    }}>
                         <div className="google-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px">
                                 <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
@@ -179,6 +188,13 @@ const Signup = () => {
                     Already have an account? <Link to="/login" className="auth-link" style={{ cursor: 'pointer' }}>Login</Link>
                 </p>
             </div>
+            <footer className="auth-footer-links">
+                <Link to="/privacy">Privacy Policy</Link>
+                <span>•</span>
+                <Link to="/terms">Terms of Service</Link>
+                <span>•</span>
+                <a href="mailto:todo1.app@gmail.com">Contact</a>
+            </footer>
         </div>
     );
 };

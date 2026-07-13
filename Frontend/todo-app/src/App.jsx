@@ -1,3 +1,4 @@
+import LandingPage from "./components/LandingPage";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -48,6 +49,10 @@ function App() {
         />
         <Routes>
           <Route path="/" element={
+            loading ? <div className="loading">Checking...</div> :
+              user ? <Navigate to="/dashboard" replace /> : <LandingPage />
+          } />
+          <Route path="/register" element={
             loading ? <div className="loading">Checking...</div> :
               user ? <Navigate to="/dashboard" replace /> : <Signup />
           } />

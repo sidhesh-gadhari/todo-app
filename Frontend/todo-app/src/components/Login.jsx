@@ -63,9 +63,9 @@ const Login = () => {
                             onChange={(e) => { setPass(e.target.value) }}
                             style={{ paddingRight: '3rem' }}
                         />
-                        <button 
-                            type="button" 
-                            className="password-toggle-btn" 
+                        <button
+                            type="button"
+                            className="password-toggle-btn"
                             onClick={() => setShowPass(!showPass)}
                             aria-label={showPass ? "Hide password" : "Show password"}
                         >
@@ -91,7 +91,7 @@ const Login = () => {
                     </a>
                 </form>
                 <p className="auth-footer">
-                    Don't have an account? <Link to="/" className="auth-link" style={{ cursor: 'pointer' }}>Sign Up</Link>
+                    Don't have an account? <Link to="/register" className="auth-link" style={{ cursor: 'pointer' }}>Sign Up</Link>
                 </p>
             </div>
         </div>
