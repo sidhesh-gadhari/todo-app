@@ -114,27 +114,6 @@ const Signup = () => {
                         </button>
                     </div>
 
-                    {pass && (
-                        <div className="password-checklist-box">
-                            <p className={validations.minLength ? "text-green" : "text-red"}>
-                                {validations.minLength ? "✓" : "✕"} Between 6 and 15 characters
-                            </p>
-                            <p className={validations.hasUpperCase ? "text-green" : "text-red"}>
-                                {validations.hasUpperCase ? "✓" : "✕"} At least one uppercase letter (A-Z)
-                            </p>
-                            <p className={validations.hasLowerCase ? "text-green" : "text-red"}>
-                                {validations.hasLowerCase ? "✓" : "✕"} At least one lowercase letter (a-z)
-                            </p>
-                            <p className={validations.hasNumber ? "text-green" : "text-red"}>
-                                {validations.hasNumber ? "✓" : "✕"} At least one number (0-9)
-                            </p>
-                            {/* ✅ FIXED: changed from hasSpecialChar to validations.hasUniqueChar */}
-                            <p className={validations.hasUniqueChar ? "text-green" : "text-red"}>
-                                {validations.hasUniqueChar ? "✓" : "✕"} At least one special symbol (@, $, !, %, *, ?, &, #)
-                            </p>
-                        </div>
-                    )}
-
                     <div className={getConfirmBorderClass()}>
                         <FiLock className="input-icon" />
                         <input
@@ -155,6 +134,27 @@ const Signup = () => {
                             {showCnfrm ? <BiShow /> : <BiHide />}
                         </button>
                     </div>
+
+                    {pass && (
+                        <div className="password-checklist-box">
+                            <p className={validations.minLength ? "text-green" : "text-red"}>
+                                {validations.minLength ? "✓" : "✕"} Between 6 and 15 characters
+                            </p>
+                            <p className={validations.hasUpperCase ? "text-green" : "text-red"}>
+                                {validations.hasUpperCase ? "✓" : "✕"} At least one uppercase letter (A-Z)
+                            </p>
+                            <p className={validations.hasLowerCase ? "text-green" : "text-red"}>
+                                {validations.hasLowerCase ? "✓" : "✕"} At least one lowercase letter (a-z)
+                            </p>
+                            <p className={validations.hasNumber ? "text-green" : "text-red"}>
+                                {validations.hasNumber ? "✓" : "✕"} At least one number (0-9)
+                            </p>
+                            {/* ✅ FIXED: changed from hasSpecialChar to validations.hasUniqueChar */}
+                            <p className={validations.hasUniqueChar ? "text-green" : "text-red"}>
+                                {validations.hasUniqueChar ? "✓" : "✕"} At least one special symbol (@, $, !, %, *, ?, &, #)
+                            </p>
+                        </div>
+                    )}
 
                     <button type="submit" className="auth-btn" disabled={loading}>
                         {loading ? 'Sending...' : 'Sign Up'}
