@@ -21,6 +21,7 @@
   "description": "Backend For ToDo application",
   "main": "Server.js",
   "scripts": {
+    "start": "node Server.js",
     "test": "nodemon Server.js"
   },
   "keywords": [

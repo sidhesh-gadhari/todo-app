@@ -1,0 +1,12 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Root package.json for Heroku deployment",
+  "scripts": {
+    "heroku-postbuild": "cd Backend && npm install",
+    "start": "cd Backend && npm start"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
