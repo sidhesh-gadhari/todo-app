@@ -8,6 +8,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import VerifyAccount from "./components/VerifyAccount";
 import { useAuth } from "./components/AuthContext";
 import { Toaster } from "react-hot-toast";
+import Privacy from "./components/Privacy";
+import Terms from "./components/Terms";
 
 function App() {
   const { user, loading } = useAuth();
@@ -69,6 +71,8 @@ function App() {
               <AddTaskMobile />
             </ProtectedRoute>
           } />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
       </BrowserRouter>
     </>
