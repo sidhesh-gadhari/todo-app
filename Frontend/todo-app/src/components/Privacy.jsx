@@ -4,11 +4,11 @@ const Privacy = () => {
   return (
     <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', color: '#f1f5f9', backgroundColor: '#06050a', fontFamily: "'Inter', sans-serif", minHeight: '100vh' }}>
       <h1 style={{ color: '#10b981', marginBottom: '20px' }}>Privacy Policy</h1>
-      <p style={{ marginBottom: '15px', lineHeight: '1.6' }}>Last updated: {new Date().toLocaleDateString()}</p>
-      
+      <p style={{ marginBottom: '15px', lineHeight: '1.6' }}>Last updated: July 14, 2026</p>
+
       <h2 style={{ color: '#e2e8f0', marginTop: '30px', marginBottom: '15px' }}>1. Information We Collect</h2>
       <p style={{ marginBottom: '15px', lineHeight: '1.6' }}>
-        When you use ToDo-App, we collect basic profile information (like your name and email address) when you sign in using Google OAuth. 
+        When you use ToDo-App, we collect basic profile information (like your name and email address) when you sign in using Google OAuth.
         We also request access to your Google Calendar to create task reminders.
       </p>
 
@@ -24,7 +24,7 @@ const Privacy = () => {
 
       <h2 style={{ color: '#e2e8f0', marginTop: '30px', marginBottom: '15px' }}>4. Contact Us</h2>
       <p style={{ marginBottom: '15px', lineHeight: '1.6' }}>
-        If you have any questions about this Privacy Policy, please contact us.
+        If you have any questions about this Privacy Policy, please contact us on todo1.app@gmail.com.
       </p>
     </div>
   );
