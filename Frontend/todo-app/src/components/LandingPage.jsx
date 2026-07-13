@@ -1,5 +1,6 @@
 import React from 'react';
 import './LandingPage.css';
+import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
     return (
@@ -18,9 +19,9 @@ export default function LandingPage() {
                 </div>
             </nav>
 
-            {/* SECTION 1: HERO */}
+            {/* SECTION 1: HERO (Updated Single-Column Centered Layout) */}
             <header className="lp-section lp-hero-section">
-                <div className="lp-container lp-hero-grid">
+                <div className="lp-container">
                     <div className="lp-hero-content">
                         <div className="lp-badge">
                             <span className="lp-badge-dot" /> Premium Task Management
@@ -31,50 +32,8 @@ export default function LandingPage() {
                             reminders with Google Calendar.
                         </p>
                         <div className="lp-hero-cta-group">
-                            <a href="#signup" className="lp-btn lp-btn-primary">Get Started</a>
-                            <a href="#login" className="lp-btn lp-btn-secondary">Login</a>
-                        </div>
-                    </div>
-
-                    <div className="lp-hero-mockup-wrapper">
-                        <div className="lp-glass-panel lp-dashboard-mockup">
-                            <div className="lp-mockup-header">
-                                <span className="lp-mockup-title">Workspace Dashboard</span>
-                                <div className="lp-mockup-user">A</div>
-                            </div>
-                            <div className="lp-mockup-stats">
-                                <div className="lp-stat-box">
-                                    <div className="lp-stat-label">Tasks Pending</div>
-                                    <div className="lp-stat-value">4</div>
-                                </div>
-                                <div className="lp-stat-box">
-                                    <div className="lp-stat-label">Completed Today</div>
-                                    <div className="lp-stat-value">12</div>
-                                </div>
-                            </div>
-                            <div className="lp-mockup-list">
-                                <div className="lp-mockup-item">
-                                    <div className="lp-mockup-item-left">
-                                        <span className="lp-mockup-checkbox" />
-                                        <span className="lp-mockup-text">Review Q3 architectural design docs</span>
-                                    </div>
-                                    <span className="lp-mockup-tag">High</span>
-                                </div>
-                                <div className="lp-mockup-item">
-                                    <div className="lp-mockup-item-left">
-                                        <span className="lp-mockup-checkbox" />
-                                        <span className="lp-mockup-text">Sync reminders to Google Calendar</span>
-                                    </div>
-                                    <span className="lp-mockup-tag lp-cal">Calendar</span>
-                                </div>
-                                <div className="lp-mockup-item lp-completed">
-                                    <div className="lp-mockup-item-left">
-                                        <span className="lp-mockup-checkbox lp-checked" />
-                                        <span className="lp-mockup-text">Deploy updated API schema patches</span>
-                                    </div>
-                                    <span className="lp-mockup-tag" style={{ opacity: 0.4 }}>Done</span>
-                                </div>
-                            </div>
+                            <Link to="/register" className="lp-btn lp-btn-primary">Get Started</Link>
+                            <Link to="/login" className="lp-btn lp-btn-secondary">Login</Link>
                         </div>
                     </div>
                 </div>
@@ -186,7 +145,7 @@ export default function LandingPage() {
                                 <div className="lp-cal-header">Google Calendar Event</div>
                                 <div className="lp-cal-event-card">
                                     <div>✦ Review Architecture Docs</div>
-                                    <div className="lp-cal-event-time">14:00 - 15:00 UTC</div>
+                                    <div className="lp-cal-event-time">1:00 pm - 2:00 pm IST</div>
                                 </div>
                             </div>
                         </div>
@@ -218,8 +177,8 @@ export default function LandingPage() {
                         <h2>Ready to organize your work?</h2>
                         <p>Deploy a clean, distraction-free environment optimized specifically for tracking priorities instantly.</p>
                         <div className="lp-cta-btn-group">
-                            <a href="#signup" className="lp-btn lp-btn-primary">Get Started</a>
-                            <a href="#login" className="lp-btn lp-btn-secondary">Login</a>
+                            <Link to="/register" className="lp-btn lp-btn-primary">Get Started</Link>
+                            <Link to="/login" className="lp-btn lp-btn-secondary">Login</Link>
                         </div>
                     </div>
                 </div>
@@ -239,21 +198,21 @@ export default function LandingPage() {
                         <div className="lp-footer-col">
                             <h4>Legal</h4>
                             <ul>
-                                <li><a href="#privacy">Privacy Policy</a></li>
-                                <li><a href="#terms">Terms of Service</a></li>
+                                <li><Link to="/privacy">Privacy Policy</Link></li>
+                                <li><Link to="/terms">Terms of Service</Link></li>
                             </ul>
                         </div>
                         <div className="lp-footer-col">
                             <h4>Product</h4>
                             <ul>
-                                <li><a href="#contact">Contact</a></li>
-                                <li><a href="#github">GitHub Repository</a></li>
+                                <li><a href="mailto:sidheshgadhari45@gmail.com" target="_blank">Contact</a></li>
+                                <li><a href="https://github.com/Sidhesh7788/Todo-App" target="_blank">GitHub Repository</a></li>
                             </ul>
                         </div>
                         <div className="lp-footer-col">
                             <h4>Developer</h4>
                             <ul>
-                                <li><a href="#dev">Developer</a></li>
+                                <li><a href="https://github.com/Sidhesh7788" target="_blank">Developer</a></li>
                             </ul>
                         </div>
                     </div>

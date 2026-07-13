@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LANDING PAGE THEME VARIABLES (Scoped to avoid global style pollution)
+   1. ROOT VARIABLES
    ========================================================================== */
 .lp-wrapper {
     --lp-bg-main: #0b0d12;
@@ -37,7 +37,7 @@
 }
 
 /* ==========================================================================
-   LAYOUT UTILITIES
+   2. GLOBAL LAYOUT
    ========================================================================== */
 .lp-container {
     max-width: 1200px;
@@ -46,7 +46,8 @@
 }
 
 .lp-section {
-    padding: 100px 0;
+    padding: 140px 0;
+    /* Increased spacing for premium breathing room */
 }
 
 .lp-section-header {
@@ -70,45 +71,13 @@
     font-size: 1.1rem;
 }
 
-/* ==========================================================================
-   COMPONENTS & REUSABLES
-   ========================================================================== */
-.lp-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--lp-font-sans);
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 12px 24px;
-    border-radius: var(--lp-radius-sm);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-}
-
-.lp-btn-primary {
-    background-color: var(--lp-text-main);
-    color: var(--lp-bg-main);
-    border: 1px solid var(--lp-text-main);
-}
-
-.lp-btn-primary:hover {
-    background-color: transparent;
-    color: var(--lp-text-main);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-.lp-btn-secondary {
-    background-color: var(--lp-glass-bg);
-    color: var(--lp-text-main);
+.lp-glass-panel {
+    background: var(--lp-glass-bg);
     border: 1px solid var(--lp-glass-border);
-    backdrop-filter: blur(8px);
-}
-
-.lp-btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    border-color: var(--lp-glass-border-hover);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--lp-radius-md);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .lp-badge {
@@ -122,7 +91,7 @@
     font-size: 0.85rem;
     color: var(--lp-text-muted);
     font-weight: 500;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
 .lp-badge-dot {
@@ -133,17 +102,8 @@
     box-shadow: 0 0 8px var(--lp-accent-primary);
 }
 
-.lp-glass-panel {
-    background: var(--lp-glass-bg);
-    border: 1px solid var(--lp-glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: var(--lp-radius-md);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 /* ==========================================================================
-   NAVBAR
+   3. NAVBAR
    ========================================================================== */
 .lp-navbar {
     position: sticky;
@@ -199,38 +159,56 @@
 }
 
 /* ==========================================================================
-   SECTION 1: HERO
+   4. HERO SECTION
    ========================================================================== */
-.lp-hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 60px;
-    align-items: center;
-    padding: 60px 0;
+.lp-hero-section {
+    padding: 160px 0 120px 0;
+    position: relative;
+}
+
+.lp-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: var(--lp-accent-primary-glow);
+    filter: blur(100px);
+    z-index: 0;
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 .lp-hero-content {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .lp-hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 800;
-    line-height: 1.15;
+    line-height: 1.1;
     letter-spacing: -0.04em;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     background: linear-gradient(185deg, #ffffff 30%, #a3a3a3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .lp-hero-content p {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--lp-text-muted);
-    margin-bottom: 36px;
-    max-width: 520px;
+    margin-bottom: 40px;
+    max-width: 580px;
+    line-height: 1.6;
 }
 
 .lp-hero-cta-group {
@@ -238,149 +216,49 @@
     gap: 16px;
 }
 
-.lp-hero-mockup-wrapper {
-    position: relative;
-}
-
-.lp-hero-mockup-wrapper::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    right: -10%;
-    width: 300px;
-    height: 300px;
-    background: var(--lp-accent-primary-glow);
-    filter: blur(80px);
-    z-index: -1;
-    border-radius: 50%;
-}
-
-.lp-dashboard-mockup {
-    padding: 24px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-}
-
-.lp-mockup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
-
-.lp-mockup-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--lp-text-main);
-}
-
-.lp-mockup-user {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #3b82f6;
-    display: flex;
+/* ==========================================================================
+   5. BUTTONS
+   ========================================================================== */
+.lp-btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-
-.lp-mockup-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.lp-stat-box {
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid var(--lp-glass-border);
+    font-family: var(--lp-font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 12px 28px;
     border-radius: var(--lp-radius-sm);
-    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
 }
 
-.lp-stat-label {
-    font-size: 0.75rem;
-    color: var(--lp-text-dark);
+.lp-btn-primary {
+    background-color: var(--lp-text-main);
+    color: var(--lp-bg-main);
+    border: 1px solid var(--lp-text-main);
 }
 
-.lp-stat-value {
-    font-size: 1.2rem;
-    font-weight: 700;
+.lp-btn-primary:hover {
+    background-color: transparent;
     color: var(--lp-text-main);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-.lp-mockup-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.lp-mockup-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px;
-    border-radius: var(--lp-radius-sm);
-    background: rgba(255, 255, 255, 0.02);
+.lp-btn-secondary {
+    background-color: var(--lp-glass-bg);
+    color: var(--lp-text-main);
     border: 1px solid var(--lp-glass-border);
+    backdrop-filter: blur(8px);
 }
 
-.lp-mockup-item-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-}
-
-.lp-mockup-checkbox {
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--lp-text-dark);
-    border-radius: 4px;
-    display: inline-block;
-}
-
-.lp-mockup-checkbox.lp-checked {
-    background-color: var(--lp-accent-success);
-    border-color: var(--lp-accent-success);
-    position: relative;
-}
-
-.lp-mockup-checkbox.lp-checked::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 3px;
-    height: 6px;
-    border: solid white;
-    border-width: 0 1.5px 1.5px 0;
-    transform: rotate(45deg);
-}
-
-.lp-mockup-item.lp-completed .lp-mockup-text {
-    text-decoration: line-through;
-    color: var(--lp-text-dark);
-}
-
-.lp-mockup-tag {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 100px;
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--lp-accent-primary);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.lp-mockup-tag.lp-cal {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--lp-accent-success);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+.lp-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--lp-glass-border-hover);
 }
 
 /* ==========================================================================
-   SECTION 2: FEATURES
+   6. FEATURES SECTION
    ========================================================================== */
 .lp-features-grid {
     display: grid;
@@ -426,7 +304,7 @@
 }
 
 /* ==========================================================================
-   SECTION 3: HOW IT WORKS
+   7. HOW IT WORKS
    ========================================================================== */
 .lp-steps-grid {
     display: grid;
@@ -479,7 +357,7 @@
 }
 
 /* ==========================================================================
-   SECTION 4: GOOGLE CALENDAR
+   8. GOOGLE CALENDAR COMPLIANCE
    ========================================================================== */
 .lp-calendar-panel {
     padding: 60px;
@@ -545,7 +423,6 @@
 .lp-policy-text p {
     font-size: 0.88rem;
     color: var(--lp-text-muted);
-    margin-bottom: 0;
 }
 
 .lp-calendar-visual {
@@ -592,7 +469,7 @@
 }
 
 /* ==========================================================================
-   SECTION 5: SECURITY
+   9. SECURITY TRUST ECOSYSTEM
    ========================================================================== */
 .lp-security-grid {
     display: grid;
@@ -626,7 +503,7 @@
 }
 
 /* ==========================================================================
-   SECTION 6: CALL TO ACTION
+   10. CALL TO ACTION
    ========================================================================== */
 .lp-cta-panel {
     padding: 80px 40px;
@@ -671,7 +548,7 @@
 }
 
 /* ==========================================================================
-   FOOTER
+   11. FOOTER
    ========================================================================== */
 .lp-footer {
     border-top: 1px solid var(--lp-glass-border);
@@ -726,22 +603,11 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE MEDIA QUERIES
+   12. RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1024px) {
-    .lp-hero-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-        text-align: center;
-        padding: 40px 0;
-    }
-
-    .lp-hero-content {
-        align-items: center;
-    }
-
-    .lp-hero-content p {
-        max-width: 600px;
+    .lp-hero-content h1 {
+        font-size: 3.75rem;
     }
 
     .lp-calendar-panel {
@@ -761,11 +627,11 @@
 
 @media (max-width: 768px) {
     .lp-section {
-        padding: 60px 0;
+        padding: 100px 0;
     }
 
     .lp-hero-content h1 {
-        font-size: 2.75rem;
+        font-size: 3.25rem;
     }
 
     .lp-steps-grid {
@@ -794,7 +660,7 @@
 
 @media (max-width: 480px) {
     .lp-hero-content h1 {
-        font-size: 2.25rem;
+        font-size: 2.5rem;
     }
 
     .lp-hero-cta-group,
