@@ -206,7 +206,7 @@ export default function LandingPage() {
                             <h4>Product</h4>
                             <ul>
                                 <li><a href="mailto:sidheshgadhari45@gmail.com" target="_blank">Contact</a></li>
-                                <li><a href="https://github.com/Sidhesh7788/Todo-App" target="_blank">GitHub Repository</a></li>
+                                <li><a href="https://github.com/Sidhesh7788/todo-app" target="_blank">GitHub Repository</a></li>
                             </ul>
                         </div>
                         <div className="lp-footer-col">

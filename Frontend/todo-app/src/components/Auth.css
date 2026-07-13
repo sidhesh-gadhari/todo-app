@@ -1,148 +1,142 @@
 /* ==========================================================================
-   1. SPLIT LAYOUT ROOT & MAIN CONTAINERS
+   1. ROOT LAYOUT
    ========================================================================== */
 .auth-container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    /* Fixed height to match screen exactly */
-    background: #06050a;
-    font-family: 'Inter', -apple-system, sans-serif;
-    overflow: hidden;
-    /* Prevents whole page scroll */
-}
+    --auth-bg-main: #0b0d12;
+    --auth-accent-primary: #10b981;
+    /* Green accent color preferred for auth flows */
+    --auth-accent-primary-glow: rgba(16, 185, 129, 0.12);
+    --auth-text-main: #f3f4f6;
+    --auth-text-muted: #9ca3af;
+    --auth-text-dark: #6b7280;
+    --auth-glass-bg: rgba(255, 255, 255, 0.03);
+    --auth-glass-border: rgba(255, 255, 255, 0.07);
+    --auth-glass-border-hover: rgba(255, 255, 255, 0.15);
+    --auth-radius-sm: 8px;
+    --auth-radius-md: 14px;
+    --auth-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
-/* Left Side Design Banner Section */
-.auth-container::before {
-    content: "";
-    display: flex;
-    align-items: flex-end;
-    padding: 3.5rem;
-    font-size: 1.25rem;
-    font-weight: 900;
-    letter-spacing: 0.25rem;
-    /* 4px -> 0.25rem */
-    color: #10b981;
-    width: 50%;
-    height: 100vh;
-    background: #0d0b18;
-    background-image: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
-    border-right: 1px solid #1c1830;
-    /* Micro-border kept in px */
-}
-
-/* Right Side Core Card Area Form Panel (SCROLLBAR FIX) */
-.glass-card {
-    width: 50%;
-    height: 100vh;
-    /* Strict screen viewport constraint */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--auth-bg-main);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08), transparent 50%),
+        radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 24px 24px;
+    font-family: var(--auth-font-sans);
+    color: var(--auth-text-main);
+    padding: 40px 24px 24px 24px;
+    box-sizing: border-box;
     align-items: center;
-    /* Centers layout perfectly horizontally */
-    padding: 2rem 3rem;
-    /* Compact vertical padding */
-    background: #06050a;
-    overflow-y: hidden;
-    /* Hard locks vertical scroll engine */
+    justify-content: center;
 }
 
-.glass-card h2 {
-    color: #ffffff;
-    font-size: 2.3rem;
-    /* Snug font sizing to maximize real estate */
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    /* Tighter layout compression */
-    text-align: center;
-    max-width: 25rem;
-    /* 400px -> 25rem */
+.auth-container * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   2. AUTH CARD
+   ========================================================================== */
+.glass-card {
+    background: var(--auth-glass-bg);
+    border: 1px solid var(--auth-glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--auth-radius-md);
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     width: 100%;
 }
 
 /* ==========================================================================
-   2. CORE AUTH FORM COMPONENTS
+   3. TYPOGRAPHY
    ========================================================================== */
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    /* Compact layout spacing to fit checklist box */
-    max-width: 25rem;
-    /* 400px -> 25rem */
-    width: 100%;
+.glass-card h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* Base Input Control Wrapper Box */
+/* ==========================================================================
+   4. INPUTS
+   ========================================================================== */
 .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
-    background: #0d0b18;
-    border: 1px solid #1c1830;
-    /* Micro-border kept in px */
-    border-radius: 0.75rem;
-    /* 12px -> 0.75rem */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--auth-glass-border);
+    border-radius: var(--auth-radius-sm);
     transition: all 0.2s ease-in-out;
     overflow: hidden;
-    /* FIX: Clips the sharp corners of the browser autofill background */
 }
 
-/* Inside Naked Input Field (NO MORE DOUBLE BORDERS) */
-.auth-form input {
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"] {
     width: 100%;
-    padding: 1rem 1.25rem 1rem 3.25rem;
+    padding: 12px 16px 12px 44px;
     background: transparent;
-    /* Transparent to respect wrapper style */
     border: none;
-    /* Stripped out internal input borders */
-    border-radius: 0.75rem;
-    /* 12px -> 0.75rem */
     color: #ffffff;
-    font-family: 'Poppins', 'Inter', sans-serif;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    letter-spacing: 0.03125rem;
-    /* 0.5px -> 0.03125rem */
     outline: none;
 }
 
 .auth-form input::placeholder {
-    color: #9ca3af;
+    color: var(--auth-text-dark);
     font-weight: 400;
 }
 
-/* Floating Input Vector Icons */
 .input-icon {
     position: absolute;
-    left: 1.25rem;
-    color: #4b5563;
-    font-size: 1.2rem;
+    left: 14px;
+    color: var(--auth-text-dark);
+    font-size: 1.1rem;
     pointer-events: none;
     transition: color 0.2s ease;
 }
 
-/* Focus Interactive States System */
+/* Focus Interactive States */
 .input-wrapper:focus-within {
-    border-color: #10b981;
-    box-shadow: 0 0 1.25rem rgba(16, 185, 129, 0.12);
-    /* 20px -> 1.25rem */
+    border-color: var(--auth-accent-primary);
+    box-shadow: 0 0 16px var(--auth-accent-primary-glow);
 }
 
 .input-wrapper:focus-within .input-icon {
-    color: #10b981;
+    color: var(--auth-accent-primary);
 }
 
 /* Password Visibility Toggle Button */
 .password-toggle-btn {
     position: absolute;
-    right: 1.25rem;
+    right: 14px;
     background: transparent;
     border: none;
-    color: #4b5563;
+    color: var(--auth-text-dark);
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
@@ -154,51 +148,42 @@
 }
 
 .password-toggle-btn:hover {
-    color: #f1f5f9;
+    color: var(--auth-text-main);
 }
 
 .input-wrapper:focus-within .password-toggle-btn {
-    color: #10b981;
+    color: var(--auth-accent-primary);
 }
 
-/* Fix for Chrome Autofill turning inputs white */
+/* Autofill Patch Overrides */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 3.125rem #0d0b18 inset !important;
-    /* 50px -> 3.125rem */
-    -webkit-text-fill-color: #f1f5f9 !important;
-    border-radius: 0.75rem !important;
-    /* 12px -> 0.75rem */
+    -webkit-box-shadow: 0 0 0 50px #0f121a inset !important;
+    -webkit-text-fill-color: #ffffff !important;
     transition: background-color 5000s ease-in-out 0s;
 }
 
 /* ==========================================================================
-   3. REAL-TIME PASSWORD COMPLEXITY CHECKLIST
+   5. PASSWORD CHECKLIST
    ========================================================================== */
 .password-checklist-box {
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    /* Micro-border kept in px */
-    padding: 0.625rem 0.75rem;
-    /* 10px 12px -> 0.625rem 0.75rem */
-    margin: -0.25rem 0 0.25rem 0;
-    /* Keeps checklist pinned tight */
-    border-radius: 0.375rem;
-    /* 6px -> 0.375rem */
-    font-size: 0.8125rem;
-    /* 13px -> 0.8125rem */
-    text-align: left;
-    max-width: 25rem;
-    /* 400px -> 25rem */
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--auth-glass-border);
+    padding: 12px;
+    margin-top: -4px;
+    border-radius: var(--auth-radius-sm);
+    font-size: 0.8rem;
     width: 100%;
 }
 
 .password-checklist-box p {
-    margin: 0.25rem 0;
-    /* 4px -> 0.25rem */
+    margin: 4px 0;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     transition: color 0.2s ease-in-out;
 }
 
@@ -207,111 +192,70 @@ input:-webkit-autofill:active {
 }
 
 .text-green {
-    color: #22c55e;
+    color: var(--auth-accent-primary);
 }
 
-/* ==========================================================================
-   4. DYNAMIC CONFIRM PASSWORD VALIDATION BORDERS
-   ========================================================================== */
-/* ❌ Realtime Match Mismatch */
+/* Dynamic Validation Borders */
 .input-wrapper.border-red {
     border-color: #ef4444 !important;
-    box-shadow: 0 0 0.75rem rgba(239, 68, 68, 0.25);
-    /* 12px -> 0.75rem */
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
 }
 
-/* 🟡 Under-process Sequence Syncing */
 .input-wrapper.border-typing {
     border-color: #3b82f6 !important;
-    box-shadow: 0 0 0.75rem rgba(59, 130, 246, 0.25);
-    /* 12px -> 0.75rem */
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.15);
 }
 
-/* ✅ Complete Absolute Match Lock */
 .input-wrapper.border-green {
-    border-color: #22c55e !important;
-    box-shadow: 0 0 0.75rem rgba(34, 197, 94, 0.25);
-    /* 12px -> 0.75rem */
+    border-color: var(--auth-accent-primary) !important;
+    box-shadow: 0 0 12px var(--auth-accent-primary-glow);
 }
 
 /* ==========================================================================
-   5. INTERACTION BUTTONS & SOCIAL OAUTH PROVIDERS
+   6. BUTTONS
    ========================================================================== */
 .auth-btn {
-    padding: 1rem;
-    margin-top: 0.5rem;
-    background: #10b981;
-    color: #06050a;
-    border: none;
-    border-radius: 0.75rem;
-    /* 12px -> 0.75rem */
-    font-weight: 800;
+    padding: 12px;
+    background: var(--auth-text-main);
+    color: var(--auth-bg-main);
+    border: 1px solid var(--auth-text-main);
+    border-radius: var(--auth-radius-sm);
+    font-weight: 600;
     font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03125rem;
-    /* 0.5px -> 0.03125rem */
     cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.auth-btn:hover {
-    background: #34d399;
-}
-
-/* Social Separator */
-.oauth-separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 0.625rem 0;
-    /* 10px -> 0.625rem */
-    color: #666;
-    max-width: 25rem;
-    /* 400px -> 25rem */
+    transition: all 0.2s ease;
     width: 100%;
 }
 
-.oauth-separator::before,
-.oauth-separator::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #333;
-    /* Micro-border kept in px */
+.auth-btn:hover:not(:disabled) {
+    background: transparent;
+    color: var(--auth-text-main);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-.oauth-separator span {
-    padding: 0 0.625rem;
-    /* 10px -> 0.625rem */
-    font-size: 0.75rem;
-    /* 12px -> 0.75rem */
+.auth-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
-/* Google Pill Custom Identity Button */
+/* ==========================================================================
+   7. GOOGLE BUTTON
+   ========================================================================== */
 .google-btn-dark {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #131314;
-    color: #e3e3e3;
-    border: 1px solid #8e918f;
-    /* Micro-border kept in px */
-    border-radius: 6.25rem;
-    /* 100px -> 6.25rem */
-    padding: 0 1.5rem;
-    /* 24px -> 1.5rem */
-    height: 2.5rem;
-    /* 40px -> 2.5rem */
+    background-color: transparent;
+    color: var(--auth-text-main);
+    border: 1px solid var(--auth-glass-border);
+    border-radius: var(--auth-radius-sm);
+    padding: 0 16px;
+    height: 42px;
     text-decoration: none;
-    font-family: "Google Sans", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.875rem;
-    /* 14px -> 0.875rem */
+    font-size: 0.9rem;
     font-weight: 500;
-    letter-spacing: 0.015625rem;
-    /* 0.25px -> 0.015625rem */
-    transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+    transition: all 0.2s ease;
     cursor: pointer;
-    max-width: 25rem;
-    /* 400px -> 25rem */
     width: 100%;
 }
 
@@ -319,148 +263,152 @@ input:-webkit-autofill:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 0.75rem;
-    /* 12px -> 0.75rem */
+    margin-right: 10px;
 }
 
-.google-btn-text {
-    user-select: none;
+.google-btn-dark:hover:not(.disabled-google-btn) {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--auth-glass-border-hover);
 }
 
-.google-btn-dark:hover {
-    background-color: #1e1e1f;
-    border-color: #c4c7c5;
-}
-
-.google-btn-dark:focus {
-    background-color: #131314;
-    border-color: #a8caa2;
-    outline: none;
-}
-
-/* Legacy Strategy Component Wrapper (Kept for safe build backup) */
-.google-oauth-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.625rem;
-    /* 10px -> 0.625rem */
-    background-color: #1a1a1a;
-    color: #fff;
-    border: 1px solid #333;
-    /* Micro-border kept in px */
-    padding: 0.625rem;
-    /* 10px -> 0.625rem */
-    border-radius: 0.375rem;
-    /* 6px -> 0.375rem */
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.2s;
-}
-
-.google-oauth-btn:hover {
-    background-color: #262626;
+.disabled-google-btn {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* ==========================================================================
-   6. NAVIGATION REDIRECT FOOTER & MEDIA RESPONSE HANDLERS
+   8. CHECKBOX
    ========================================================================== */
-.auth-footer {
-    margin-top: 1.5rem;
-    color: #4b5563;
-    font-size: 0.9rem;
-    max-width: 25rem;
-    /* 400px -> 25rem */
-    width: 100%;
-    border-top: 1px solid #1c1830;
-    /* Micro-border kept in px */
-    padding-top: 1rem;
-}
-
-.auth-link {
-    color: #10b981;
-    font-weight: 700;
-    margin-left: 0.25rem;
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 4px 0;
     cursor: pointer;
 }
 
-.auth-link:hover {
-    color: #34d399;
+.checkbox-container input[type="checkbox"] {
+    margin-top: 4px;
+    accent-color: var(--auth-accent-primary);
+    cursor: pointer;
+}
+
+.checkbox-container label {
+    font-size: 0.85rem;
+    color: var(--auth-text-muted);
+    line-height: 1.4;
+    user-select: none;
+    cursor: pointer;
+}
+
+.checkbox-container label a {
+    color: var(--auth-text-main);
     text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-/* ===========================================
-   GOOGLE REVIEW ELEMENTS
-=========================================== */
+.checkbox-container label a:hover {
+    color: var(--auth-accent-primary);
+}
 
-.app-title {
-    color: #fff;
-    font-size: 3rem;
-    font-weight: 900;
+/* ==========================================================================
+   9. FOOTER
+   ========================================================================== */
+.auth-footer {
+    margin-top: 24px;
+    color: var(--auth-text-dark);
+    font-size: 0.9rem;
     text-align: center;
-    margin-bottom: .75rem;
+    width: 100%;
 }
 
-.hero-description {
-    color: #9ca3af;
-    text-align: center;
-    max-width: 32rem;
-    margin: 0 auto 2rem;
-    line-height: 1.7;
+.auth-link {
+    color: var(--auth-text-main);
+    font-weight: 600;
+    margin-left: 4px;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-.google-note {
-    color: #9ca3af;
-    font-size: .85rem;
-    text-align: center;
-    margin-bottom: .75rem;
-    line-height: 1.5;
+.auth-link:hover {
+    color: var(--auth-accent-primary);
 }
 
+/* Global Navigation Document Links Footer */
 .auth-footer-links {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .75rem;
-    margin-top: 2rem;
-    font-size: .9rem;
+    gap: 16px;
+    margin-top: 40px;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 420px;
 }
 
 .auth-footer-links a {
-    color: #10b981;
+    color: var(--auth-text-dark);
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .auth-footer-links a:hover {
-    text-decoration: underline;
+    color: var(--auth-text-muted);
 }
 
-.disabled-google-btn {
-    opacity: .55;
-    pointer-events: none;
-    cursor: not-allowed;
+/* ==========================================================================
+   10. UTILITIES & SEPARATORS
+   ========================================================================== */
+.oauth-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 8px 0;
+    color: var(--auth-text-dark);
+    width: 100%;
 }
 
-/* Mobile & Tablet Adaptability System Layout */
-@media (max-width: 1024px) {
-    .auth-container::before {
-        display: none;
+.oauth-separator::before,
+.oauth-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--auth-glass-border);
+}
+
+.oauth-separator span {
+    padding: 0 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   11. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 24px 16px;
+        justify-content: flex-start;
     }
 
     .glass-card {
-        width: 100%;
-        padding: 2rem;
-        align-items: center;
-        justify-content: flex-start;
-        /* Fixes top-clipping when content overflows */
-        overflow-y: auto;
+        padding: 32px 20px;
+        margin: 0 0 24px 0;
+    }
+
+    .auth-footer-links {
+        margin-top: 20px;
     }
 }
 
-/* Protect against short screens on desktop */
-@media (max-height: 750px) {
-    .glass-card {
+@media (max-height: 640px) {
+    .auth-container {
         justify-content: flex-start;
-        overflow-y: auto;
+    }
+
+    .glass-card {
+        margin: 0 0 24px 0;
     }
 }
