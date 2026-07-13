@@ -26,7 +26,7 @@ const VerifyAccount = () => {
         const verifyToken = async () => {
             try {
                 // Hit the new backend route we created!
-                const res = await axios.get(`http://localhost:3000/api/v1/todo/verify-account?token=${token}`);
+                const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api/v1'}/todo/verify-account?token=${token}`);
                 setStatus('success');
                 setMessage(res.data.message || 'Account verified successfully!');
             } catch (error) {

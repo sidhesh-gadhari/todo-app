@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 const AuthContext = createContext();
 
 const api = axios.create({
-   baseURL: 'http://localhost:3000/api/v1',
+   baseURL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api/v1',
    withCredentials: true
 });
 
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
                originalRequest._retry = true;
 
                try {
-                  await axios.post('http://localhost:3000/api/v1/todo/refresh-token', {}, { withCredentials: true });
+                  await axios.post(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api/v1'}/todo/refresh-token`, {}, { withCredentials: true });
                   return api(originalRequest);
                }
                catch (refreshError) {
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
    useEffect(() => {
       const checkAuth = async () => {
          try {
-            const res = await axios.get('http://localhost:3000/api/v1/todo/session', { withCredentials: true });
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api/v1'}/todo/session`, { withCredentials: true });
             setUser(res.data.data || null);
          }
          catch {

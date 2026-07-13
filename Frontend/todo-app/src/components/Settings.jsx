@@ -22,7 +22,7 @@ const Settings = () => {
         setLinking(true);
         toast.loading("Redirecting to Google Secure Login...");
         // Hit the backend passport route directly to open the overlay consent window
-        window.location.href = "http://localhost:3000/api/v1/todo/auth/google";
+        window.location.href = `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api/v1'}/todo/auth/google`;
     };
 
     // Evaluates if the current session has active live sync keys
