@@ -17,6 +17,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Login");
         if (email.trim() === "" || pass.trim() === "") {
             toast.dismiss();
             return toast.error("Both Fields Are Required!");

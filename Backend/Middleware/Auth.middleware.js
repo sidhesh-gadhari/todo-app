@@ -21,6 +21,9 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
             throw new ApiError(403, "Access Denied! Account email verification status is unverified.");
         }
 
+        console.log("req.cookies:", req.cookies);
+        console.log("req.headers.cookie:", req.headers.cookie);
+
         req.user = user;
         next();
     }
