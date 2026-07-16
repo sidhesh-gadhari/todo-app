@@ -10,11 +10,11 @@ export default function LandingPage() {
                 <div className="lp-container lp-nav-container">
                     <div className="lp-logo">
                         <span className="lp-logo-icon" />
-                        ToDo-App
+                        Taskly
                     </div>
                     <div className="lp-nav-actions">
-                        <a href="#login" className="lp-btn lp-btn-secondary">Login</a>
-                        <a href="#signup" className="lp-btn lp-btn-primary">Get Started</a>
+                        <Link to="/login" className="lp-btn lp-btn-secondary">Login</Link>
+                        <Link to="/register" className="lp-btn lp-btn-primary">Get Started</Link>
                     </div>
                 </div>
             </nav>
@@ -26,7 +26,7 @@ export default function LandingPage() {
                         <div className="lp-badge">
                             <span className="lp-badge-dot" /> Premium Task Management
                         </div>
-                        <h1>ToDo-App</h1>
+                        <h1>Taskly</h1>
                         <p>
                             Organize your daily tasks, manage productivity, and optionally sync
                             reminders with Google Calendar.

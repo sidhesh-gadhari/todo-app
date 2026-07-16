@@ -8,7 +8,7 @@ const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { google } = require('googleapis');
-const { getCalendarClient } = require('../Controller/Tasks.controller.js'); 
+const { getCalendarClient } = require('../Controller/Tasks.controller.js');
 
 const cookieOptions = {
     httpOnly: true,
@@ -106,7 +106,7 @@ const Signup = asyncHandler(async (req, res, next) => {
             throw new ApiError(500, "Signup Failed!");
         }
 
-        const verificationUrl = `http://localhost:5173/verify-account?token=${verificationToken}`;
+        const verificationUrl = `${process.env.CLIENT_REDIRECT_URL || 'http://localhost:5173'}/verify-account?token=${verificationToken}`;
         const emailHtml = `
         <h2>Welcome to ToDo App!</h2>
         <p>Please verify your email address to complete your signup.</p>
@@ -301,7 +301,7 @@ const verifyAccount = asyncHandler(async (req, res, next) => {
     }
 
     const user = await User.findOne({ verifiedToken: token });
-    
+
     if (!user) {
         throw new ApiError(400, "Invalid verification token! You may have requested a new one.");
     }
@@ -323,49 +323,39 @@ const verifyAccount = asyncHandler(async (req, res, next) => {
 })
 
 const deleteUser = asyncHandler(async (req, res, next) => {
-    if(!req.user._id) 
-    {
-     throw new ApiError(401, "Unauthorized Access!");   
+    if (!req.user._id) {
+        throw new ApiError(401, "Unauthorized Access!");
     }
     const { id } = req.params;
-    if(req.user._id.toString() !== id) 
-    {
-     throw new ApiError(403, "Forbidden! You can only purge your own profile.");
+    if (req.user._id.toString() !== id) {
+        throw new ApiError(403, "Forbidden! You can only purge your own profile.");
     }
-    
+
     const fullUser = await User.findById(id);
-    if(!fullUser) 
-    {
-     throw new ApiError(404, "User Profile Matrix Not Found!");
+    if (!fullUser) {
+        throw new ApiError(404, "User Profile Matrix Not Found!");
     }
     const userTasks = await Task.find({ user: id });
 
-    if(fullUser.googleCredentials?.access_token) 
-    {
-     try 
-     {
-      const calendar = getCalendarClient(fullUser);
-            
-      // Sequential block execution loop to empty primary tracking targets cleanly
-      for(const task of userTasks) 
-      {
-       if(task.googleEventId) 
-       {
-        try 
-        {
-         await calendar.events.delete({ calendarId: 'primary', eventId: task.googleEventId });
-        }  
-        catch(singleEventErr) 
-        {
-         console.error(`⚠️ Failed to remove event ${task.googleEventId}:`, singleEventErr.message);
+    if (fullUser.googleCredentials?.access_token) {
+        try {
+            const calendar = getCalendarClient(fullUser);
+
+            // Sequential block execution loop to empty primary tracking targets cleanly
+            for (const task of userTasks) {
+                if (task.googleEventId) {
+                    try {
+                        await calendar.events.delete({ calendarId: 'primary', eventId: task.googleEventId });
+                    }
+                    catch (singleEventErr) {
+                        console.error(`⚠️ Failed to remove event ${task.googleEventId}:`, singleEventErr.message);
+                    }
+                }
+            }
         }
-       }
-      }
-     } 
-     catch(calendarError) 
-     {
-      console.error("⚠️ [Calendar Core Deletion Link Broken]: ", calendarError.message);
-     }
+        catch (calendarError) {
+            console.error("⚠️ [Calendar Core Deletion Link Broken]: ", calendarError.message);
+        }
     }
 
     await Task.deleteMany({ user: id });
