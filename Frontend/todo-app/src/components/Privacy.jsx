@@ -8,7 +8,7 @@ const Privacy = () => {
 
       <h2 style={{ color: '#e2e8f0', marginTop: '30px', marginBottom: '15px' }}>1. Information We Collect</h2>
       <p style={{ marginBottom: '15px', lineHeight: '1.6' }}>
-        When you use ToDo-App, we collect basic profile information (like your name and email address) when you sign in using Google OAuth.
+        When you use Taskly-App, we collect basic profile information (like your name and email address) when you sign in using Google OAuth.
         We also request access to your Google Calendar to create task reminders.
       </p>
 
@@ -19,7 +19,7 @@ const Privacy = () => {
 
       <h2 style={{ color: '#e2e8f0', marginTop: '30px', marginBottom: '15px' }}>3. Data Storage</h2>
       <p style={{ marginBottom: '15px', lineHeight: '1.6' }}>
-        We store your task data securely in our database. We do not store your Google Calendar events other than those specifically created by ToDo-App as reminders.
+        We store your task data securely in our database. We do not store your Google Calendar events other than those specifically created by Taskly-App as reminders.
       </p>
 
       <h2 style={{ color: '#e2e8f0', marginTop: '30px', marginBottom: '15px' }}>4. Contact Us</h2>
